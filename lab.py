@@ -39,4 +39,4 @@ if st.button("Detalhar"):
             presence_penalty=0,
             stop=["\n\n"])
         explicação = explicação0.choices[0].text
-        st.write(content+".\n\n"Além desse,"+explicação)
+        st.write(content+".\n\n"+"Além desse,"+explicação)
