@@ -5,7 +5,7 @@ import openai
 
 openai.api_key = ""
 
-st.title("Labinftec APP - Classificador")
+st.title("Labinftec APP - Detalhar")
 texto = st.text_area("Coloque os ítens aqui", "")
 keyopenai = st.text_input("Coloque a chave da OpenAI aqui", "")
 
@@ -13,7 +13,7 @@ if keyopenai != "":
     openai.api_key = keyopenai
 
 texto_quebrado = texto.replace(',', '\n')
-if st.button("Classificar"):
+if st.button("Detalhar"):
     if texto == "":
         st.write("Você precisa inserir os ítens na caixa de texto.")
     else: 
@@ -27,7 +27,7 @@ if st.button("Classificar"):
   presence_penalty=0,
   stop=["\n\n"]
 )
-        st.write("Resultado da classificação:")
+        st.write("Detalhes:")
         content = response.choices[0].text
         explicação0 = openai.Completion.create(
             engine="text-davinci-002",
