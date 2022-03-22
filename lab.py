@@ -20,7 +20,7 @@ if st.button("Detalhar"):
         response = openai.Completion.create(
   engine="text-davinci-002",
   prompt="Lista:\n"+texto_quebrado+"\n'''\nFale sobre as características do vírus da lista (nome científico ou a qual família pertence, envelope, diametro, se é RNA ou DNA, sua replicação, informações do genoma.):\n\n Bom.",
-  temperature=0.7,
+  temperature=0.5,
   max_tokens=200,
   top_p=1,
   frequency_penalty=0,
@@ -34,7 +34,7 @@ if st.button("Detalhar"):
             prompt="Lista:\n"+texto_quebrado+"\n'''\nDescreva os vírus da lista:\n\n"+content+"\nCite vírus relacionado e explique: Além desse,",
             temperature=0.7,
             max_tokens=200,
-            top_p=1,
+            top_p=0,
             frequency_penalty=0,
             presence_penalty=0,
             stop=["\n\n"])
