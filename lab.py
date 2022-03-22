@@ -6,7 +6,7 @@ import openai
 openai.api_key = ""
 
 st.title("Labinftec APP - Detalhar")
-texto = st.text_area("Especifique os sintomas ou algum vírus.", "")
+texto = st.text_area("Especifique os sintomas causados por algum vírus, ou o nome dele.", "")
 keyopenai = st.text_input("Coloque a chave da OpenAI aqui", "")
 
 if keyopenai != "":
