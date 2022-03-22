@@ -24,7 +24,7 @@ if st.button("Detalhar"):
   top_p=1,
   frequency_penalty=0,
   presence_penalty=0,
-  stop=["\n\n"]
+  stop=["\n\n\n"]
 )
         st.write("Detalhes obtidos:")
         content = response.choices[0].text
