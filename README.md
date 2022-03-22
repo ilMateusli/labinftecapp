@@ -1,2 +1,2 @@
 # labinftecapp
-Realiza a classificação de ítens do mais perigoso ao menos perigoso e depois dá uma explicação.
+Cria uma descrição de vírus com base em uma lista de sintomas ou o próprio vírus.
