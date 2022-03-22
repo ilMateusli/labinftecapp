@@ -6,7 +6,7 @@ import openai
 openai.api_key = ""
 
 st.title("Labinftec APP - Detalhar")
-texto = st.text_area("Especifique os sintomas causados por algum vírus, ou o nome dele.", "")
+texto = st.text_area("Escreva sintomas causados por algum vírus, ou o nome dele.", "")
 keyopenai = st.text_input("Coloque a chave da OpenAI aqui", "")
 
 if keyopenai != "":
@@ -15,7 +15,7 @@ if keyopenai != "":
 texto_quebrado = texto.replace(',', '\n')
 if st.button("Detalhar"):
     if texto == "":
-        st.write("Você precisa inserir os ítens na caixa de texto.")
+        st.write("Você precisa escrever algo na caixa de texto.")
     else: 
         response = openai.Completion.create(
   engine="text-davinci-002",
@@ -27,7 +27,7 @@ if st.button("Detalhar"):
   presence_penalty=0,
   stop=["\n\n"]
 )
-        st.write("Resultado da classificação:")
+        st.write("Detalhes obtidos:")
         content = response.choices[0].text
         explicação0 = openai.Completion.create(
             engine="text-davinci-002",
