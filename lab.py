@@ -18,7 +18,7 @@ if st.button("Detalhar"):
     else: 
         response = openai.Completion.create(
   engine="text-davinci-002",
-  prompt="Lista:\n"+texto_quebrado+"\n'''\nFale sobre as características do vírus da lista (nome científico ou a qual família pertence, envelope, diametro, se é RNA ou DNA, sua replicação, informações do genoma.):\n\n Bom.",
+  prompt="Lista:\n"+texto_quebrado+"\n'''\nFale sobre as características do vírus da lista (nome científico ou a qual família pertence, envelope, diametro, se é RNA ou DNA, sua replicação, informações do genoma.), se for sintomas, busque o vírus que mais se aproxima aos sintomas dados na lista:\n\n Bom.",
   temperature=0.5,
   max_tokens=200,
   top_p=1,
