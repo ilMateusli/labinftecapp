@@ -39,3 +39,4 @@ if st.button("Detalhar"):
             stop=["\n\n"])
         explicação = explicação0.choices[0].text
         st.write(content+".\n\n"+"Além desse,"+explicação)
+        st.write("Você não pode confiar 100% nessa resposta. O programa ainda está em fase de desenvolvimento e pode conter erros.")
