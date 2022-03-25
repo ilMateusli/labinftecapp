@@ -45,9 +45,10 @@ if st.button("Detalhar"):
         st.write(content+".\n\n"+"Além desse,"+explicação)
         st.write("[Você não pode confiar 100% nessa resposta. O programa ainda está em fase de desenvolvimento e pode conter erros.]")
 
-    padrao = re.compile(r'\w+[dae]$')
+    #padrao = re.compile(r'\w+[dae]$')
 
-    familia = padrao.findall(texto)
+    #familia = padrao.findall(texto)
+    familia = "coronaviridae"
 
 
     link = 'https://www.gettyimages.com.br/fotos/' #-
