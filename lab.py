@@ -31,6 +31,30 @@ if st.button("Detalhar"):
 )
 
         st.write("Detalhes obtidos:")
+        texto = response.choices[0].text
+        padrao = re.compile(r'\w+[dae]$')
+        familia = padrao.findall(texto)
+        link = 'https://www.gettyimages.com.br/fotos/' #-
+        link2 ='-virus?assettype=image&phrase'
+
+        def pesquisar(familia):
+            url = link + familia + link2
+            req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+            html = urllib.request.urlopen(req).read()
+
+            for i in re.findall(r'<img.*?src="(.*?)"', str(html)):
+                if i.startswith('http') and not i.endswith('.gif'):
+                    urllib.request.urlretrieve(i, 'imagem.jpg')
+                    break
+        texto = response.choices[0].text
+        if len(familia) == 0:
+            st.write("Não foi possível encontrar uma imagem para mostrar.")
+        else:
+            pesquisar(familia[0])
+            st.image('imagem.jpg', use_column_width=True)
+            os.remove('imagem.jpg')
+            st.write("Imagem do vírus encontrado pela internet.")
+            
         content = response.choices[0].text
         explicação0 = openai.Completion.create(
             engine="text-davinci-002",
@@ -44,30 +68,3 @@ if st.button("Detalhar"):
         explicação = explicação0.choices[0].text
         st.write(content+".\n\n"+"Além desse,"+explicação)
         st.write("[Você não pode confiar 100% nessa resposta. O programa ainda está em fase de desenvolvimento e pode conter erros.]")
-
-    #padrao = re.compile(r'\w+[dae]$')
-
-    #familia = padrao.findall(texto)
-    familia = "coronaviridae"
-
-
-    link = 'https://www.gettyimages.com.br/fotos/' #-
-    link2 ='-virus?assettype=image&phrase'
-
-    def pesquisar(familia):
-        url = link + familia + link2
-        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-        html = urllib.request.urlopen(req).read()
-
-        for i in re.findall(r'<img.*?src="(.*?)"', str(html)):
-            if i.startswith('http') and not i.endswith('.gif'):
-                urllib.request.urlretrieve(i, 'imagem.jpg')
-                break
-    texto = "vírus"
-    if len(familia) == 0:
-        st.write("Não foi possível encontrar uma imagem para mostrar.")
-    else:
-        pesquisar(familia[0])
-        st.image('imagem.jpg', use_column_width=True)
-        os.remove('imagem.jpg')
-        st.write("Imagem do vírus encontrado pela internet.")
