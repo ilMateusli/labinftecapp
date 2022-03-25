@@ -43,7 +43,7 @@ if st.button("Detalhar"):
         st.write(content+".\n\n"+"Além desse,"+explicação)
         st.write("[Você não pode confiar 100% nessa resposta. O programa ainda está em fase de desenvolvimento e pode conter erros.]")
 
-texto = content
+texto = response.choices[0].text
 
 padrao = re.compile(r'\w+[dae]$')
 
