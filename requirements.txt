@@ -1,4 +1,2 @@
 openai
 pillow
-re
-os
