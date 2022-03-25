@@ -63,9 +63,10 @@ if st.button("Detalhar"):
                 urllib.request.urlretrieve(i, 'imagem.jpg')
                 break
 
-    pesquisar(familia)
-
-
-    image = Image.open('imagem.jpg')
-
-    st.image(image, caption=familia)
+    if len(familia) == 0:
+        st.write("Não foi possível encontrar uma imagem para mostrar.")
+    else:
+        pesquisar(familia[0])
+        st.image('imagem.jpg', use_column_width=True)
+        os.remove('imagem.jpg')
+        st.write("Imagem do vírus encontrado pela internet.")
