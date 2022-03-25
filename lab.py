@@ -29,7 +29,7 @@ if st.button("Detalhar"):
   presence_penalty=0,
   stop=["\n\n\n"]
 )
-        texto = response.choices[0].text
+
         st.write("Detalhes obtidos:")
         content = response.choices[0].text
         explicação0 = openai.Completion.create(
@@ -62,7 +62,7 @@ if st.button("Detalhar"):
             if i.startswith('http') and not i.endswith('.gif'):
                 urllib.request.urlretrieve(i, 'imagem.jpg')
                 break
-
+    texto = response.choices[0].text
     if len(familia) == 0:
         st.write("Não foi possível encontrar uma imagem para mostrar.")
     else:
