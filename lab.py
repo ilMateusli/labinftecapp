@@ -2,7 +2,6 @@ import streamlit as st
 import os
 import openai
 import re
-import image
 from PIL import Image
 
 openai.api_key = ""
