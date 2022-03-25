@@ -2,6 +2,7 @@ import streamlit as st
 import os
 import openai
 import re
+import urllib.request
 from PIL import Image
 
 openai.api_key = ""
@@ -28,6 +29,7 @@ if st.button("Detalhar"):
   presence_penalty=0,
   stop=["\n\n\n"]
 )
+        texto = response.choices[0].text
         st.write("Detalhes obtidos:")
         content = response.choices[0].text
         explicação0 = openai.Completion.create(
@@ -43,29 +45,27 @@ if st.button("Detalhar"):
         st.write(content+".\n\n"+"Além desse,"+explicação)
         st.write("[Você não pode confiar 100% nessa resposta. O programa ainda está em fase de desenvolvimento e pode conter erros.]")
 
-texto = response.choices[0].text
+    padrao = re.compile(r'\w+[dae]$')
 
-padrao = re.compile(r'\w+[dae]$')
-
-familia = padrao.findall(texto)
+    familia = padrao.findall(texto)
 
 
-link = 'https://www.gettyimages.com.br/fotos/' #-
-link2 ='-virus?assettype=image&phrase'
+    link = 'https://www.gettyimages.com.br/fotos/' #-
+    link2 ='-virus?assettype=image&phrase'
 
-def pesquisar(familia):
-    url = link + familia + link2
-    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-    html = urllib.request.urlopen(req).read()
+    def pesquisar(familia):
+        url = link + familia + link2
+        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        html = urllib.request.urlopen(req).read()
 
-    for i in re.findall(r'<img.*?src="(.*?)"', str(html)):
-        if i.startswith('http') and not i.endswith('.gif'):
-            urllib.request.urlretrieve(i, 'imagem.jpg')
-            break
+        for i in re.findall(r'<img.*?src="(.*?)"', str(html)):
+            if i.startswith('http') and not i.endswith('.gif'):
+                urllib.request.urlretrieve(i, 'imagem.jpg')
+                break
 
-pesquisar(familia)
+    pesquisar(familia)
 
 
-image = Image.open('imagem.jpg')
+    image = Image.open('imagem.jpg')
 
-st.image(image, caption=familia)
+    st.image(image, caption=familia)
