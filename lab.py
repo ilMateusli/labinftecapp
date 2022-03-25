@@ -63,7 +63,7 @@ if st.button("Detalhar"):
             if i.startswith('http') and not i.endswith('.gif'):
                 urllib.request.urlretrieve(i, 'imagem.jpg')
                 break
-    texto = "coronaviridae"
+    texto = "vírus"
     if len(familia) == 0:
         st.write("Não foi possível encontrar uma imagem para mostrar.")
     else:
